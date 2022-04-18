@@ -1,0 +1,21 @@
+import axios from "axios";
+
+export default class PostService {
+    static async getAll (limit = 10, page = 1) {
+            const response = await axios.get('https://jsonplaceholder.cypress.io/posts', {
+                params: {
+                    _limit: limit,
+                    _page: page
+                }
+            })
+            return response
+
+    }
+    static async getById (id) {
+        return await axios.get('https://jsonplaceholder.cypress.io/posts/' + id)
+    }
+    static async getCommentsByPostId (id) {
+        return await axios.get(`https://jsonplaceholder.cypress.io/posts/${id}/comments`)
+    }
+
+}
